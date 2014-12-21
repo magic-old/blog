@@ -1,0 +1,17 @@
+{
+  "name": "magic-blog",
+  "version": "0.0.1",
+  "private": true,
+  "main": "blog.js",
+  "dependencies": {
+    "express": "4.10.2",
+    "magic-log": "git://github.com/express-magic/magic-log"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/express-magic/magic-blog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/express-magic/magic-blog/issues"
+  }
+}
