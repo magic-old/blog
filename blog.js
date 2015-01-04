@@ -12,8 +12,13 @@ function compileBlogPosts() {
 }
 
 router.get('/blog', function (req, res, next) {
-  //get 10 newest posts
-  
+  log('blog route called');
+  res.send('blogpostlist');
+});
+
+router.get('/blog/:year', function (req, res, next) {
+  log('yearly collection called');
+  res.send('year of blog posts');
 });
 
 router.get('/blog/:year/:month/:title', function (req, res, next) {
@@ -22,7 +27,7 @@ router.get('/blog/:year/:month/:title', function (req, res, next) {
     , title      = req.params.title
     , year       = req.params.year
     , month      = req.params.month
-    , blogPath   = path.join(viewDir, 'blog', year, month, title) 
+    , blogPath   = path.join(viewDir, 'blog', year, month, day, title) 
     , layoutPath = path.join(viewDir, 'post')
   ;
 
