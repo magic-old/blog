@@ -9,17 +9,22 @@ var express  = require('express')
 ;
 
 router.get('/', function (req, res, next) {
+  var app      = req.app
+    , viewDir  = S.get('dirs').views
+    , blogRoot = path.join(viewDir, S.get('blogRoot') || 'blog')
+    , template = path.join(blogRoot, 'list')
+  ;
   console.log('rendering blog list');
-  res.render('blog/list');
+  res.render( template );
 });
 
 router.get('/:year/:month/:slug', function (req, res, next) {
   var S          = req.app
     , viewDir    = S.get('dirs').views
-    , slug      = req.params.slug
+    , slug       = req.params.slug
     , y          = req.params.year
     , m          = req.params.month
-    , blogRoot   = path.join(viewDir, 'blog')
+    , blogRoot   = path.join(viewDir, S.get('blogRoot') || 'blog')
     , postPath   = path.join(blogRoot, y, m, slug)
     , layoutPath = path.join(blogRoot, 'post')
   ;
