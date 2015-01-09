@@ -9,7 +9,7 @@ var express  = require('express')
 ;
 
 router.get('/', function (req, res, next) {
-  var app      = req.app
+  var S        = req.app
     , viewDir  = S.get('dirs').views
     , blogRoot = path.join(viewDir, S.get('blogRoot') || 'blog')
     , template = path.join(blogRoot, 'list')
