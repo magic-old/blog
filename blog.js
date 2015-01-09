@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
   ;
   log.success('hostname', hostname);
   log.success('rendering blog list with blogData', blogData);
-  res.render( template, years );
+  res.render( template );
 });
 
 router.get('/:year/:month/:slug', function (req, res, next) {
