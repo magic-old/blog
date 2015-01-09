@@ -15,9 +15,8 @@ router.get('/', function (req, res, next) {
     , template = path.join(blogRoot, 'list')
     , hostname = req.hostname
   ;
-  var years = blogData[hostname].years;
-
-  console.log('rendering blog list');
+  log.success('hostname', hostname);
+  log.success('rendering blog list with blogData', blogData);
   res.render( template, years );
 });
 
