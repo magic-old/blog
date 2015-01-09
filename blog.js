@@ -4,7 +4,7 @@ var express  = require('express')
   , path     = require('path')
   , router   = express.Router()
   , log      = require('magic-log')
-  , blogData = require(path.join(process.cwd(), 'cache', 'blog.json'))
+  , blogData = require(path.join(process.cwd(), '.cache', 'blog.json'))
   , cache    = {}
 ;
 
