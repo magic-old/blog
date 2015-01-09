@@ -4,7 +4,7 @@
   "private": true,
   "main": "blog.js",
   "dependencies": {
-    "express": "4.10.2",
+    "express": "^4.10.7",
     "magic-log": "git://github.com/express-magic/magic-log"
   },
   "repository": {
