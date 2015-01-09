@@ -4,7 +4,7 @@ var express  = require('express')
   , path     = require('path')
   , router   = express.Router()
   , log      = require('magic-log')
-  , blogData = false
+  , blogData = require(path.join(process.cwd(), 'cache', 'blog.json'))
   , cache    = {}
 ;
 
@@ -13,9 +13,12 @@ router.get('/', function (req, res, next) {
     , viewDir  = S.get('dirs').views
     , blogRoot = path.join(viewDir, S.get('blogRoot') || 'blog')
     , template = path.join(blogRoot, 'list')
+    , hostname = req.hostname
   ;
+  var years = blogData[hostname].years;
+
   console.log('rendering blog list');
-  res.render( template );
+  res.render( template, years );
 });
 
 router.get('/:year/:month/:slug', function (req, res, next) {
