@@ -4,7 +4,7 @@ var express  = require('express')
   , path     = require('path')
   , router   = express.Router()
   , log      = require('magic-log')
-  , blogData = require(path.join(process.cwd(), '.cache', 'blog.json'))
+  //~ , blogData = require(path.join(process.cwd(), '.cache', 'blog.json'))
   , cache    = {}
 ;
 
@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
     , hostname = req.hostname
   ;
   log.success('hostname', hostname);
-  log.success('rendering blog list with blogData', blogData);
+  //~ log.success('rendering blog list with blogData', blogData);
   res.render( template );
 });
 
