@@ -30,9 +30,7 @@ router.get('/:year/:month/:slug', function (req, res, next) {
     , postPath   = path.join(blogRoot, y, m, slug)
     , layoutPath = path.join(blogRoot, 'post')
   ;
-  if ( isNaN(y) || isNaN(m) ) {
-    return next();
-  }
+  if ( isNaN(y) || isNaN(m) ) { return next(); }
   res.render(postPath, function (err, post) {
     if ( err ) { log.error('error in magic-blog', err); return next();}
     res.render(layoutPath, {post: post}, function (err, content) {
