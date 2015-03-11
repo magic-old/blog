@@ -2,9 +2,13 @@
   "name": "magic-blog",
   "version": "0.0.1",
   "private": true,
-  "main": "blog.js",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "babel src/ --out-file index.js --source-maps"
+  },
   "dependencies": {
     "express": "file:../../node_modules/express",
+    "jade": "file:../../node_modules/jade",
     "magic-log": "file:../magic-log"
   },
   "repository": {
