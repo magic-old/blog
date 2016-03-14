@@ -4,8 +4,8 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "express": "^4.13.4",
-    "jade": "^1.11.0",
+    "express": "4.13.4",
+    "jade": "1.11.0",
     "magic-server-log": "github:magic/server-log"
   },
   "devDependencies": {
