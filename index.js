@@ -32,23 +32,27 @@ router.get('/', function (_ref, _ref2) {
   render(template);
 });
 
-router.get('/tag/:tag', function (_ref3, res) {
+router.get('/tag/:tag', function (_ref3, _ref4) {
   var params = _ref3.params;
+  var status = _ref4.status;
   var next = arguments.length <= 2 || arguments[2] === undefined ? noop : arguments[2];
 
-  res.status(200).send('tag page ' + params.tag);
+  status(200).send('tag page ' + params.tag);
 });
 
-router.get('/category/:category', function (_ref4, res) {
-  var params = _ref4.params;
-  var next = arguments.length <= 2 || arguments[2] === undefined ? noop : arguments[2];
-
-  res.status(200).send('category page ' + params.category);
-});
-
-router.get('/:year/:month/:slug', function (_ref5, res) {
-  var app = _ref5.app;
+router.get('/category/:category', function (_ref5, _ref6) {
   var params = _ref5.params;
+  var status = _ref6.status;
+  var next = arguments.length <= 2 || arguments[2] === undefined ? noop : arguments[2];
+
+  status(200).send('category page ' + params.category);
+});
+
+router.get('/:year/:month/:slug', function (_ref7, _ref8) {
+  var app = _ref7.app;
+  var params = _ref7.params;
+  var render = _ref8.render;
+  var status = _ref8.status;
   var next = arguments.length <= 2 || arguments[2] === undefined ? noop : arguments[2];
 
   var viewDir = app.get('dirs').views;
@@ -63,25 +67,26 @@ router.get('/:year/:month/:slug', function (_ref5, res) {
     return next();
   }
 
-  res.render(postPath, function (err, post) {
+  render(postPath, function (err, post) {
     if (err) {
       _magicServerLog2.default.error('error in magic-blog', err);
       return next();
     }
 
-    res.render(layoutPath, { post: post }, function (err, content) {
+    render(layoutPath, { post: post }, function (err, content) {
       if (err) {
         _magicServerLog2.default.error('error in magic-blog', err);
         return next();
       }
 
-      res.status(200).send(content);
+      status(200).send(content);
     });
   });
 });
 
-router.get('/:year', function (_ref6, res) {
-  var params = _ref6.params;
+router.get('/:year', function (_ref9, _ref10) {
+  var params = _ref9.params;
+  var status = _ref10.status;
   var next = arguments.length <= 2 || arguments[2] === undefined ? noop : arguments[2];
   var year = params.year;
 
@@ -91,11 +96,12 @@ router.get('/:year', function (_ref6, res) {
   }
 
   (0, _magicServerLog2.default)('yearly collection called', year);
-  res.status(200).send('year of blog posts ' + year);
+  status(200).send('year of blog posts ' + year);
 });
 
-router.get('/:year/:month', function (_ref7, res) {
-  var params = _ref7.params;
+router.get('/:year/:month', function (_ref11, _ref12) {
+  var params = _ref11.params;
+  var status = _ref12.status;
   var next = arguments.length <= 2 || arguments[2] === undefined ? noop : arguments[2];
   var year = params.year;
   var month = params.month;
@@ -106,7 +112,9 @@ router.get('/:year/:month', function (_ref7, res) {
   }
 
   (0, _magicServerLog2.default)('monthly collection called', month, year);
-  res.status(200).send('month of blog posts ' + month + '/' + year);
+  status(200).send('month of blog posts ' + month + '/' + year);
 });
 
 exports.default = router;
+
+//# sourceMappingURL=index.js.map

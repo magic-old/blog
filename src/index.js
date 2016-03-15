@@ -19,19 +19,19 @@ router.get(
 
 router.get(
   '/tag/:tag',
-  ({ params }, res, next = noop) => {
-    res.status(200).send(`tag page ${params.tag}`);
+  ({ params }, { status }, next = noop) => {
+    status(200).send(`tag page ${params.tag}`);
   });
 
 router.get(
   '/category/:category',
-  ({ params }, res, next = noop) => {
-    res.status(200).send(`category page ${params.category}`);
+  ({ params }, { status }, next = noop) => {
+    status(200).send(`category page ${params.category}`);
   });
 
 router.get(
   '/:year/:month/:slug',
-  ({ app, params }, res, next = noop) => {
+  ({ app, params }, { render, status }, next = noop) => {
     const viewDir = app.get('dirs').views;
     const slug = params.slug;
     const y = params.year;
@@ -44,7 +44,7 @@ router.get(
       return next();
     }
 
-    res.render(
+    render(
       postPath,
       (err, post) => {
         if (err) {
@@ -52,7 +52,7 @@ router.get(
           return next();
         }
 
-        res.render(
+        render(
           layoutPath,
           { post },
           (err, content) => {
@@ -61,14 +61,14 @@ router.get(
               return next();
             }
 
-            res.status(200).send(content);
+            status(200).send(content);
           });
       });
   });
 
 router.get(
   '/:year',
-  ({ params }, res, next = noop) => {
+  ({ params }, { status }, next = noop) => {
     const { year } = params;
 
     if (!isNumber(year)) {
@@ -76,12 +76,12 @@ router.get(
     }
 
     log('yearly collection called', year);
-    res.status(200).send(`year of blog posts ${year}`);
+    status(200).send(`year of blog posts ${year}`);
   });
 
 router.get(
   '/:year/:month',
-  ({ params }, res, next = noop) => {
+  ({ params }, { status }, next = noop) => {
     const { year, month } = params;
 
     if (!isNumber(year) || !isNumber(month)) {
@@ -89,7 +89,7 @@ router.get(
     }
 
     log('monthly collection called', month, year);
-    res.status(200).send(`month of blog posts ${month}/${year}`);
+    status(200).send(`month of blog posts ${month}/${year}`);
   });
 
 export default router;
